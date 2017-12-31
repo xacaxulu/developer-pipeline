@@ -4,9 +4,3 @@ os: redhat
 
 services:
   - docker
-
-before_install:
-  - docker ps -a
-
-after_success:
-  - docker images
