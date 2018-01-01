@@ -9,6 +9,7 @@ jobs:
       - run: ant test
       - run: jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html
       - run: docker build -t was-sample-app .
-      - run: docker run -d -p 0.0.0.0:80:9080 -p 443:9443 --name dummy was-sample-app
+      - run: docker run -d -p 80:9080 -p 443:9443 --name dummy was-sample-app
       - run: docker ps
-      - run: curl 0.0.0.0
+      - run: sleep 10
+      - run: curl -v localhost
