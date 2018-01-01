@@ -11,6 +11,9 @@ jobs:
       - store_artifacts:
           path: ./sample.war
   deploy:
+    machine:
+      java:
+        version: openjdk7
     steps:
       - run: aws s3 sync sample.war s3://build-artifacts-java-aig-test/java-apps/ --delete
       
