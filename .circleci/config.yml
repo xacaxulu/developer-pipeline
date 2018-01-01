@@ -8,15 +8,16 @@ jobs:
       - checkout
       - run: ant test
       - run: jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html
-      - store_artifacts:
-          path: ./sample.war
   
   deploy:
     machine:
       java:
         version: openjdk7
     steps:
-      - run: aws s3 sync ./sample.war s3://build-artifacts-java-aig-test/java-apps/ --delete
+      - checkout
+      - run: ant test
+      - run: jar -cvf /home/circleci/project/sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html
+      - run: aws s3 sync /home/circleci/project/sample.war s3://build-artifacts-java-aig-test/java-apps/ --delete
 
 workflows:
   version: 2
