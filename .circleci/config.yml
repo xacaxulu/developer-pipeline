@@ -1,9 +1,9 @@
 version: 2
-machine:
-  java:
-    version: openjdk7
   jobs:
     build:
+      machine:
+        java:
+          version: openjdk7
       steps:
         - checkout
         - run: ant test
