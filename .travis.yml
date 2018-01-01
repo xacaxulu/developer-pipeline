@@ -6,7 +6,15 @@ services:
   - docker
 
 before_install:
+  - jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html 
+  - docker pull websphere-liberty:webProfile7
+  - docker build -t was-sample-app .
+  - docker run -d -p 80:9080 -p 443:9443 -v sample.war:/config/dropins/ websphere-liberty:webProfile7
   - docker ps -a
 
+
 after_success:
-  - docker images
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
+    docker push xacaxulu/was-prod-dockerimage:v"$TRAVIS_BUILD_NUMBER";
+    fi
