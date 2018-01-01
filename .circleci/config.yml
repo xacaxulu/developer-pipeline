@@ -10,7 +10,7 @@ jobs:
       - run: jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html
       - store_artifacts:
           path: ./sample.war
-  deploy-job:
+  deploy:
    prod:
      branch: master
      commands:
