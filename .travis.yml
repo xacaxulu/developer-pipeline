@@ -10,10 +10,6 @@ os: redhat
 
 services:
   - docker
-before_install:
-  - curl localhost
-  - curl 127.0.0.1/sample
-  - curl localhost/sample
 
 install:
   - jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html 
