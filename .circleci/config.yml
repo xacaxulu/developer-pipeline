@@ -10,11 +10,11 @@ jobs:
       - run: jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html
       - store_artifacts:
           path: ./sample.war
-deployment:
- prod:
-   branch: master
-   commands:
-     - aws s3 sync sample.war s3://build-artifacts-java-aig-test/java-apps/ --delete
+  deploy-job:
+   prod:
+     branch: master
+     commands:
+       - aws s3 sync sample.war s3://build-artifacts-java-aig-test/java-apps/ --delete
       
     # machine:
     #   java:
