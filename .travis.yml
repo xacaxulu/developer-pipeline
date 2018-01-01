@@ -19,7 +19,7 @@ install:
   - travis_wait 5 docker ps -a
 
 script:
-  - sudo ./test.sh
+  - ./test.sh
 
 # after_success:
 #   - if [ "$TRAVIS_BRANCH" == "master" ]; then
