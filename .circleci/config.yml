@@ -3,10 +3,9 @@ version: 2
     machine:
       java:
         version: openjdk7
-    steps:
-      - checkout
-      - run: ant test
-      - run: jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html
-      - run: docker build -t was-sample-app .
-      - run: docker run -d -p 80:9080 -p 443:9443 was-sample-app 
-    
+  steps:
+    - checkout
+    - run: ant test
+    - run: jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html
+    - run: docker build -t was-sample-app .
+    - run: docker run -d -p 80:9080 -p 443:9443 was-sample-app     
