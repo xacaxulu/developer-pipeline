@@ -1,25 +1,30 @@
 version: 2
+jobs:
+  test_java_artifacts:
+    machine:
+      java:
+        version: openjdk7
+    test:
+      pre:
+        - ant test
+  
+  # services:
+  #   - docker
 
-machine:
-  java:
-    version: openjdk7
-  services:
-    - docker
+  # dependencies:
+  #   override:
+  #     - docker info
+  #     - docker build --rm=false -t was-sample-app .
+  
 
-  dependencies:
-    override:
-      - docker info
-      - docker build --rm=false -t was-sample-app .
-  test:
-    pre:
-      - ant test
+  # compile:
+  #   override:
+  #     - jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html
+  # jobs:
 
-  compile:
-    override:
-      - jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html
 
-  deployment:
-    prod:
-      branch: master
-      commands:
-        - aws s3 sync sample.war s3://build-artifacts-java-aig-test/java-apps/ --delete
+  # deployment:
+  #   prod:
+  #     branch: master
+  #     commands:
+  #       - aws s3 sync sample.war s3://build-artifacts-java-aig-test/java-apps/ --delete
