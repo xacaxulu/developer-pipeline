@@ -21,7 +21,7 @@ install:
   - docker run --net=host -d -p 9080:9080 -p 443:9443 was-sample-app
   - sleep 15
   - docker ps
-  - curl localhost:9080
+  - ./test
 
 # after_success:
 #   - if [ "$TRAVIS_BRANCH" == "master" ]; then
