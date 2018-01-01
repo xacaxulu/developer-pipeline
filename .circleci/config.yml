@@ -9,9 +9,4 @@ version: 2
       - run: jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html
       - run: docker build -t was-sample-app .
       - run: docker run -d -p 80:9080 -p 443:9443 was-sample-app 
-        
-workflows:
-  version: 2
-  build:
-    jobs:
-      - build    
+    
