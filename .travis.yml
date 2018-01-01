@@ -10,6 +10,10 @@ before_install:
   - ant test
 install:
   - jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html 
+  - docker build -t was-sample-app .
+  - docker run --net=host -d -p 9080:9080 -p 443:9443 was-sample-app
+  - sleep 15
+  - docker ps
 
 
 
@@ -23,11 +27,6 @@ install:
 
 
 
-#   - ls
-#   - docker build -t was-sample-app .
-#   - docker run --net=host -d -p 9080:9080 -p 443:9443 was-sample-app
-#   - sleep 15
-#   - docker ps
 #   - ./test.sh
 # after_success:
 #   - if [ "$TRAVIS_BRANCH" == "master" ]; then
