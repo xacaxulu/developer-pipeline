@@ -17,7 +17,7 @@ jobs:
       - checkout
       - run: ant test
       - run: jar -cvf /home/circleci/project/sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html
-      - run: aws s3 sync /home/circleci/project/sample.war s3://build-artifacts-java-aig-test/java-apps/ --delete
+      - run: aws s3 sync /home/circleci/project/ s3://build-artifacts-java-aig-test/java-apps/ --delete
 
 workflows:
   version: 2
