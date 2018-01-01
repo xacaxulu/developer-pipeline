@@ -18,7 +18,7 @@ before_install:
   - docker ps -a | grep sample-container
 
 script:
-  - ./test.sh
+  - sudo ./test.sh
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
