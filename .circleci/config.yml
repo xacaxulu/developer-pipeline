@@ -10,13 +10,12 @@ jobs:
       - run: jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html
       - store_artifacts:
           path: ./sample.war
+  deploy:
+    machine:
+      java:
+        version: openjdk7
+    steps:
       - run: aws s3 sync /home/circleci/project/sample.war s3://build-artifacts-java-aig-test/java-apps/ --delete
-      
-  # deploy:
-  #   machine:
-  #     java:
-  #       version: openjdk7
-  #   steps:
       
     # machine:
     #   java:
