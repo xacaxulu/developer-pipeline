@@ -1,12 +1,11 @@
 version: 2
 jobs:
-  test_java_artifacts:
+  build:
     machine:
       java:
         version: openjdk7
-    test:
-      pre:
-        - ant test
+    steps:
+      run: ant test
   
   # services:
   #   - docker
