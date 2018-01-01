@@ -8,6 +8,8 @@ jobs:
       - checkout
       - run: ant test
       - run: jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html
+      - store_artifacts:
+          path: ./sample.war
       - run: aws s3 sync sample.war s3://build-artifacts-java-aig-test/java-apps/ --delete
       
   # deploy:
@@ -15,7 +17,6 @@ jobs:
   #     java:
   #       version: openjdk7
   #   steps:
-  #     - run: aws s3 sync sample.war s3://build-artifacts-java-aig-test/java-apps/ --delete
       
     # machine:
     #   java:
