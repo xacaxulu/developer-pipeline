@@ -10,6 +10,6 @@ jobs:
       - run: jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html
       - run: docker build -t was-sample-app .
       - run: docker run -d -p 80:9080 -p 443:9443 was-sample-app
-      - run: curl localhost
+      - run: docker ps
       - run: curl 127.0.0.1/sample
       - run: curl localhost/sample    
