@@ -10,16 +10,22 @@ os: redhat
 
 services:
   - docker
+before_install:
+  - curl localhost
+  - curl 127.0.0.1/sample
+  - curl localhost/sample
 
 install:
   - jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html 
   - ls
   - docker build -t was-sample-app .
-  - docker run -d -p 127.0.0.1:80:9080 -p 443:9443 was-sample-app
+  - docker run -d -p 80:9080 -p 443:9443 was-sample-app
   - travis_wait 5 docker ps -a
 
-script:
-  - ./test.sh
+after_install:
+  - curl localhost
+  - curl 127.0.0.1/sample
+  - curl localhost/sample
 
 # after_success:
 #   - if [ "$TRAVIS_BRANCH" == "master" ]; then
