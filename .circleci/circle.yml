@@ -10,65 +10,15 @@ dependencies:
   override:
     - docker info
     - docker build --rm=false -t was-sample-app .
+test:
+  - ant test
 
+compile:
+  override:
+    - jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html
 
-#   build:
-    
-#     working_directory: ~/circleci-demo-java-spring
-
-#     docker:
-#       - image: circleci/openjdk:8-jdk-browsers
-
-#     steps:
-
-#       - checkout
-
-#       - restore_cache:
-#           key: circleci-demo-java-spring-{{ checksum "pom.xml" }}
-      
-#       - run: mvn dependency:go-offline
-      
-#       - save_cache:
-#           paths:
-#             - ~/.m2
-#           key: circleci-demo-java-spring-{{ checksum "pom.xml" }}
-      
-#       - run: mvn package
-      
-#       - store_test_results:
-#           path: target/surefire-reports
-      
-#       - store_artifacts:
-#           path: target/demo-java-spring-0.0.1-SNAPSHOT.jar
-
-
-# # machine:
-#   java:
-#     version: openjdk7
-
-
-
-# compile:
-#   override:
-#     - jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html
-
-# deployment:
-#   prod:
-#     branch: master
-#     commands:
-#       - aws s3 sync sample.war s3://build-artifacts-java-aig-test/java-apps/ --delete
-  # build:
-  #   machine: true
-  #   steps:
-  #     - checkout
-  #     # start proprietary DB using private Docker image
-  #     # with credentials stored in the UI
-  #     - run: |
-  #        docker login -u $DOCKER_USER -p $DOCKER_PASS
-  #        docker run -d --name db company/proprietary-db:1.2.3
-
-  #     # build the application image
-  #     - run: docker build -t company/app:$CIRCLE_BRANCH .
-
-  #     # deploy the image
-  #     - run: docker push company/app:$CIRCLE_BRANCH
+deployment:
+  prod:
+    branch: master
+    commands:
+      - aws s3 sync sample.war s3://build-artifacts-java-aig-test/java-apps/ --delete
