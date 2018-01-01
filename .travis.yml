@@ -1,31 +1,31 @@
 language: java
-
 sudo: required
-
 dist: trusty
-
 group: deprecated-2017Q4
-
 os: redhat
-
 services:
   - docker
 
-before_install:
-  - ant test
 
-install:
-  - jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html 
-  - ls
-  - docker build -t was-sample-app .
-  - docker run --net=host -d -p 9080:9080 -p 443:9443 was-sample-app
-  - sleep 15
-  - docker ps
-  - ./test.sh
 
-after_success:
-  - if [ "$TRAVIS_BRANCH" == "master" ]; then
-    docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
-    docker tag was-sample-app xacaxulu/was-prod-dockerimage:v"$TRAVIS_BUILD_NUMBER";
-    docker push xacaxulu/was-prod-dockerimage:v"$TRAVIS_BUILD_NUMBER";
-    fi
+
+
+
+
+  
+# before_install:
+#   - ant test
+# install:
+#   - jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html 
+#   - ls
+#   - docker build -t was-sample-app .
+#   - docker run --net=host -d -p 9080:9080 -p 443:9443 was-sample-app
+#   - sleep 15
+#   - docker ps
+#   - ./test.sh
+# after_success:
+#   - if [ "$TRAVIS_BRANCH" == "master" ]; then
+#     docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
+#     docker tag was-sample-app xacaxulu/was-prod-dockerimage:v"$TRAVIS_BUILD_NUMBER";
+#     docker push xacaxulu/was-prod-dockerimage:v"$TRAVIS_BUILD_NUMBER";
+#     fi
