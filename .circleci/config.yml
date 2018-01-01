@@ -11,4 +11,4 @@ jobs:
       - run: docker build -t was-sample-app .
       - run: docker run -d -p 80:9080 -p 443:9443 --name dummy was-sample-app
       - run: docker ps
-      - run: docker exec -it dummy /bin/bash curl localhost/sample    
+      - run: docker exec dummy /bin/bash curl localhost/sample    
