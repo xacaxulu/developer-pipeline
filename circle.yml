@@ -8,6 +8,9 @@ jobs:
       - checkout
       - run: ant test
   compile:
+    machine:
+      java:
+        version: openjdk7
     steps:
       - run: jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html
   
