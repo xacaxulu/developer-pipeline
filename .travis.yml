@@ -2,16 +2,18 @@ language: java
 
 os: redhat
 
+
 services:
   - docker
 
 before_install:
   - jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html 
-  - docker pull websphere-liberty:webProfile7
   - docker build -t was-sample-app .
-  - docker run -d -p 80:9080 -p 443:9443 -v sample.war:/config/dropins/ websphere-liberty:webProfile7
+  - docker run -d -p 80:9080 -p 443:9443 was-sample-app
   - docker ps -a
 
+script:
+  - curl localhost/sample/
 
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
