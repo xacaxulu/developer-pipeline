@@ -1,19 +1,22 @@
 language: java
+
 sudo: required
+
 dist: trusty
+
 group: deprecated-2017Q4
 
 os: redhat
-
 
 services:
   - docker
 
 before_install:
+  - apt-get install curl
   - jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html 
   - docker build -t was-sample-app .
-  - docker run -d -p 80:9080 -p 443:9443 was-sample-app
-  - docker ps -a
+  - docker run -d -p 80:9080 -p 443:9443 --name sample-container was-sample-app
+  - docker ps -a | grep sample-container
 
 script:
   - curl localhost/sample/
