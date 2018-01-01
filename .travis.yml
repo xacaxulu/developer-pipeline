@@ -12,7 +12,6 @@ services:
   - docker
 
 before_install:
-  - apt-get install curl
   - jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html 
   - docker build -t was-sample-app .
   - docker run -d -p 127.0.0.1:80:9080 -p 443:9443 --name sample-container was-sample-app
