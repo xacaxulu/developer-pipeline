@@ -18,7 +18,7 @@ jobs:
       - checkout
       - run: ant test
       
-      - run: aws s3 sync /tmp/wars/ s3://build-artifacts-java-aig-test/java-apps/ --delete
+      - run: aws s3 sync /tmp/wars s3://build-artifacts-java-aig-test/java-apps/ --delete
 
 workflows:
   version: 2
