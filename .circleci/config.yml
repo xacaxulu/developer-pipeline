@@ -11,4 +11,4 @@ jobs:
       - run: docker build -t was-sample-app .
       - run: docker run -d -p 80:9080 -p 443:9443 was-sample-app
       - run: docker ps
-      - run: curl localhost/sample    
+      - run: curl localhost/sample/    
