@@ -14,20 +14,9 @@ install:
   - docker run --net=host -d -p 9080:9080 -p 443:9443 was-sample-app
   - sleep 15
   - docker ps
+  - ./test.sh
 
 
-
-
-
-
-
-
-
-
-
-
-
-#   - ./test.sh
 # after_success:
 #   - if [ "$TRAVIS_BRANCH" == "master" ]; then
 #     docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
