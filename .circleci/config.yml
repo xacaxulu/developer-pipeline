@@ -18,6 +18,19 @@ jobs:
       - run: ant test
       - run: jar -cvf /home/circleci/project/sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html
       - run: aws s3 sync /home/circleci/project/sample.war s3://build-artifacts-java-aig-test/java-apps/ --delete
+  build-docker:
+    machine:
+      java:
+        version: openjdk7
+      steps:
+        - checkout
+        - run: docker build -t was-sample-app .
+  run-docker:
+    docker:
+      - image: was-sample-app
+    steps:
+      - checkout
+      - run: docker run -d -p 80:9080 -p 443:9443 was-sample-app   
 
 workflows:
   version: 2
@@ -26,4 +39,8 @@ workflows:
       - build
       - deploy:
           requires:
-            - build     
+            - build
+      - build-docker
+      - run-docker:
+          requires:
+            - build-docker     
