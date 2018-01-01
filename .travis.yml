@@ -11,14 +11,12 @@ os: redhat
 services:
   - docker
 
-before_install:
+install:
   - jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html 
   - ls
   - docker build -t was-sample-app .
   - docker run -d -p 80:9080 -p 443:9443 was-sample-app
-
-after_install:
-  - docker ps -a
+  - travis_wait 5 docker ps -a
 
 script:
   - sudo ./test.sh
