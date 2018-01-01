@@ -8,8 +8,8 @@ jobs:
       - checkout
       - run: ant test
   compile:
-    override:
-      - jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html
+    steps:
+      - run: jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html
   
   # services:
   #   - docker
