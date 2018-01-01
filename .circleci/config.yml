@@ -10,12 +10,14 @@ jobs:
       - run: jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html
       - store_artifacts:
           path: ./sample.war
+  
   deploy:
     machine:
       java:
         version: openjdk7
     steps:
-      - run: aws s3 sync /home/circleci/project/sample.war s3://build-artifacts-java-aig-test/java-apps/ --delete
+      - run: aws s3 sync ./sample.war s3://build-artifacts-java-aig-test/java-apps/ --delete
+
 workflows:
   version: 2
   build-deploy:
@@ -24,38 +26,3 @@ workflows:
       - deploy:
           requires:
             - build     
-    # machine:
-    #   java:
-    #     version: openjdk7
-#     steps:
-#       - checkout
-#       - run: ant test
-#   compile:
-#     machine:
-#       java:
-#         version: openjdk7
-#     steps:
-#       - checkout
-#       - run: jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html
-#       - store_artifacts:
-#         path: ./sample.war
-#   # services:
-#   #   - docker
-
-#   # dependencies:
-#   #   override:
-#   #     - docker info
-#   #     - docker build --rm=false -t was-sample-app .
-  
-
-#   # compile:
-#   #   override:
-#   #     - jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html
-#   # jobs:
-
-
-  # deployment:
-  #   prod:
-  #     branch: master
-  #     commands:
-  #       - aws s3 sync sample.war s3://build-artifacts-java-aig-test/java-apps/ --delete
