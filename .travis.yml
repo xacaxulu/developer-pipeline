@@ -23,8 +23,8 @@ install:
   - docker ps
   - ./test.sh
 
-# after_success:
-#   - if [ "$TRAVIS_BRANCH" == "master" ]; then
-#     docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
-#     docker push xacaxulu/was-prod-dockerimage:v"$TRAVIS_BUILD_NUMBER";
-#     fi
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
+    docker push xacaxulu/was-prod-dockerimage:v"$TRAVIS_BUILD_NUMBER";
+    fi
