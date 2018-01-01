@@ -1,16 +1,16 @@
 version: 2
-  jobs:
-    build:
-      machine:
-        java:
-          version: openjdk7
-      steps:
-        - checkout
-        - run: ant test
-        - run: mv test
-        - run: jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html
-        - store_artifacts:
-            path: ./sample.war
+jobs:
+  build:
+    machine:
+      java:
+        version: openjdk7
+    steps:
+      - checkout
+      - run: ant test
+      - run: mv test
+      - run: jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html
+      - store_artifacts:
+          path: ./sample.war
       
     # machine:
     #   java:
