@@ -22,9 +22,9 @@ jobs:
     machine:
       java:
         version: openjdk7
-      steps:
-        - checkout
-        - run: docker build -t was-sample-app .
+    steps:
+      - checkout
+      - run: docker build -t was-sample-app .
   run-docker:
     docker:
       - image: was-sample-app
