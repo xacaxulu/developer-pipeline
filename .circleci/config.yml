@@ -1,9 +1,15 @@
-# version: 2
-# jobs:
-#   build:
-#     machine:
-#       java:
-#         version: openjdk7
+version: 2
+  machine:
+    java:
+      version: openjdk7
+  - checkout
+  # jobs:
+  #   test:
+  #     steps:
+      
+    # machine:
+    #   java:
+    #     version: openjdk7
 #     steps:
 #       - checkout
 #       - run: ant test
