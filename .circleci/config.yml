@@ -25,8 +25,7 @@ jobs:
     steps:
       - checkout
       - run: ant test
-      - run: jar -cvf /home/circleci/project/sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html
-      - run: aws s3 sync /home/circleci/project/sample.war s3://build-artifacts-java-aig-test/java-apps/ --delete
+      - run: jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html
       - run: docker build -t was-sample-app .
   run-docker:
     docker:
