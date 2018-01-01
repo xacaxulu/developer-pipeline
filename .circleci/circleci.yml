@@ -6,19 +6,19 @@ machine:
   services:
     - docker
 
-dependencies:
-  override:
-    - docker info
-    - docker build --rm=false -t was-sample-app .
-test:
-  - ant test
-  
-compile:
-  override:
-    - jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html
+    dependencies:
+      override:
+        - docker info
+        - docker build --rm=false -t was-sample-app .
+  test:
+    - ant test
+    
+  compile:
+    override:
+      - jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html
 
-deployment:
-  prod:
-    branch: master
-    commands:
-      - aws s3 sync sample.war s3://build-artifacts-java-aig-test/java-apps/ --delete
+  deployment:
+    prod:
+      branch: master
+      commands:
+        - aws s3 sync sample.war s3://build-artifacts-java-aig-test/java-apps/ --delete
