@@ -5,18 +5,24 @@ group: deprecated-2017Q4
 os: redhat
 services:
   - docker
-
-
-
-
-
-
-
   
-# before_install:
-#   - ant test
-# install:
-#   - jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html 
+before_install:
+  - ant test
+install:
+  - jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html 
+
+
+
+
+
+
+
+
+
+
+
+
+
 #   - ls
 #   - docker build -t was-sample-app .
 #   - docker run --net=host -d -p 9080:9080 -p 443:9443 was-sample-app
