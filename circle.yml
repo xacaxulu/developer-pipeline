@@ -5,6 +5,7 @@ jobs:
       java:
         version: openjdk7
     steps:
+      - checkout
       - run: ant test
   
   # services:
