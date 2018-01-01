@@ -11,6 +11,9 @@ os: redhat
 services:
   - docker
 
+before_install:
+  - ant test
+
 install:
   - jar -cvf sample.war META-INF/ WEB-INF/ hello.jsp images/ index.html 
   - ls
