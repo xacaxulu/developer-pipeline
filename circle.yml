@@ -5,7 +5,7 @@ jobs:
       java:
         version: openjdk7
     steps:
-      run: ant test
+      - run: ant test
   
   # services:
   #   - docker
