@@ -20,7 +20,6 @@ install:
   - docker build -t was-sample-app .
   - docker run -d -p 80:9080 -p 443:9443 was-sample-app
   - travis_wait 5 docker ps -a
-  - curl localhost
   - curl 127.0.0.1/sample
   - curl localhost/sample
 
