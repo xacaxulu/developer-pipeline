@@ -1,7 +1,7 @@
 #!/bin/sh
 set -e
 expected="<title>WebSphere Liberty 17.0.0.4</title>"
-actual=`curl localhost`
+actual=`curl 127.0.0.1`
 echo "Expecting: $expected"
 echo "Server says: $actual"
 if [[ "$expected" == *"$actual"* ]]; then
