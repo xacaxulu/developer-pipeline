@@ -22,4 +22,4 @@ after_success:
     docker tag was-sample-app xacaxulu/was-prod-dockerimage:"$TRAVIS_BUILD_NUMBER";
     docker push xacaxulu/was-prod-dockerimage:v"$TRAVIS_BUILD_NUMBER";
     fi
-  - ./ecs-deploy.sh
+  - ./ecs-deploy
