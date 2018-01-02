@@ -19,6 +19,7 @@ install:
 after_success:
   - if [ "$TRAVIS_BRANCH" == "master" ]; then
     docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD";
-    docker tag was-sample-app xacaxulu/was-prod-dockerimage:v"$TRAVIS_BUILD_NUMBER";
+    docker tag was-sample-app xacaxulu/was-prod-dockerimage:"$TRAVIS_BUILD_NUMBER";
     docker push xacaxulu/was-prod-dockerimage:v"$TRAVIS_BUILD_NUMBER";
     fi
+  - bin/ecs-deploy.sh
